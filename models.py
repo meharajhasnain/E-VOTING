@@ -5,16 +5,17 @@ from database import Base
 class Voter(Base):
     __tablename__ = "voters"
     id = Column(Integer, primary_key=True, index=True)
-    nid = Column(String(20), unique=True, index=True)        # length 20
-    name = Column(String(100), nullable=False)              # length 100
-    birth_date = Column(String(10), nullable=False)         # YYYY-MM-DD format
+    nid = Column(String(20), unique=True, index=True)
+    name = Column(String(100), nullable=False)  
+    # ? dd/mm/yyyy format         
+    birth_date = Column(String(10), nullable=False)       
     has_voted = Column(Boolean, default=False)
 
 class Candidate(Base):
     __tablename__ = "candidates"
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(100), nullable=False)              # length 100
-    party = Column(String(50), nullable=False)              # length 50
+    name = Column(String(100), nullable=False)             
+    party = Column(String(50), nullable=False)              
     votes = relationship("Vote", back_populates="candidate")
 
 class Vote(Base):
